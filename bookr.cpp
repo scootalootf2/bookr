@@ -36,8 +36,10 @@
 PSP_MODULE_INFO("Bookr", 0, 1, 1);
 PSP_HEAP_SIZE_KB(-7*1024);
 PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER | THREAD_ATTR_VFPU);
-#endif
 
+#endif
+// trying to kill homescreen...load the 'driver' first ofc -scooty
+#include <pspimpose_driver.h>
 extern int processCHMHTM(bkLayers& layers, string filepath, bool convertToVN);
 
 extern "C" {
@@ -59,7 +61,17 @@ bool isHTMOrCHM(string& file) {
 			== 0 || stricmp(tmp.c_str(), ".chm") == 0;
 }
 
+// dummy function for replacing impose(home button menu) -scooty
+int dumy_func(int value)
+{
+	return 0;
+}
+
 int main(int argc, char* argv[]) {
+	// disable home button as 1. bookr has exit button 2. this is a irshell plugin -scooty
+	sceImposeSetHomePopup(0);
+	sceImposeSetUMDPopup(0);
+	sceImposeSetLanguageMode(0, 0);
 
 	initLogging();
 
