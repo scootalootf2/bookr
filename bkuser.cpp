@@ -58,7 +58,7 @@ void BKUser::setDefaultControls() {
 	controls.showToolbar		= FZ_REPS_SELECT;
 
 	// set menu default controls
-	controls.select				= FZ_REPS_CROSS;//FZ_REPS_CIRCLE; -scooty was here
+	controls.select				= FZ_REPS_CROSS;//FZ_REPS_CIRCLE;swap to western mode -scooty
 	controls.cancel				= FZ_REPS_CIRCLE;//FZ_REPS_CROSS;
 	controls.alternate			= FZ_REPS_TRIANGLE;
 	controls.details			= FZ_REPS_SQUARE;
