@@ -8,13 +8,14 @@ OBJS+=fzrefcount.o fzinstreammem.o fzinstreamstd.o fzimage.o fzimagepng.o fztext
 OBJS+=tinystr.o tinyxmlerror.o tinyxml.o tinyxmlparser.o bkmemcpy.o
 OBJS+=res_uifont.o res_txtfont.o res_uitex.o res_logo.o res_uitex2.o
 OBJS+=chmlib/chm_lib.o chmlib/lzx.o
-OBJS+=vnconv\byteio.o vnconv\charset.o vnconv\data.o vnconv\error.o vnconv\pattern.o
-OBJS+=bkcachechooser.o vnconv\webviqrconv.o
+#vnconv forward slashes -scooty
+OBJS+=vnconv/byteio.o vnconv/charset.o vnconv/data.o vnconv/error.o vnconv/pattern.o
+OBJS+=bkcachechooser.o vnconv/webviqrconv.o
 OBJS+=pspchm.o
 
 DIST_DIR=dist
-
-PSP_FREETYPE=C:/Users/Giorgos/psp-ports/trunk/freetype
+#make it so it is C:/freetype/include/freetype/*.h -scooty
+PSP_FREETYPE=C:/freetype 
 
 INCDIR =$(PSP_FREETYPE)/include     utf8
 CFLAGS = -Imupdf/include -Idjvu/libdjvupsp -G0 -O2
