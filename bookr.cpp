@@ -68,7 +68,7 @@ int dumy_func(int value)
 }
 
 int main(int argc, char* argv[]) {
-	// disable home button as 1. bookr has exit button 2. this is a irshell plugin -scooty
+	// disable home button as 1. bookr has an exit option 2. this is an irshell plugin, let's forget about sony's stuffs... -scooty
 	sceImposeSetHomePopup(0);
 	sceImposeSetUMDPopup(0);
 	sceImposeSetLanguageMode(0, 0);
