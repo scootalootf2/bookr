@@ -84,45 +84,14 @@ int main(int argc, char* argv[]) {
 
 	FZScreen::dcacheWritebackAll();
 	// if an explicit path was specified, use that path (irshell plugin style, where argv[1] is a full path) -scoots
-	if(argc == 2){
-		// just clone the locaLastFile content since I didn't really read through all the source codes to understand all the layer manupulations... -scoots
-		string s(argv[1]);// changes made here only -scoots
-		if( s.substr(0,5) == "ms0:/" )
-		{
-				// clear layers
-				bkLayersIt it(layers.begin());
-				bkLayersIt end(layers.end());
-				while (it != end) {
-					(*it)->release();
-					++it;
-				}
-				layers.clear();
-				// little hack to display a loading screen
-				BKLogo* l = BKLogo::create();
-				l->setLoading(true);
-				FZScreen::startDirectList();
-				l->render();
-				FZScreen::endAndDisplayList();
-				FZScreen::waitVblankStart();
-				FZScreen::swapBuffers();
-				FZScreen::checkEvents();
-				l->release();
-				// detect file type and add a new display layer
-				documentLayer = BKDocument::create(s);
-				if (documentLayer == 0) {
-					// error, back to logo screen
-					BKLogo* l = BKLogo::create();
-					l->setError(true);
-					layers.push_back(l);
-					FZScreen::swapBuffers();
-				} else {
-					// file loads ok, add the layer
-					layers.push_back(documentLayer);
-				}
-		}
-	}else if( BKUser::options.loadLastFile )
+	if( BKUser::options.loadLastFile || argc == 2)
 	{
-		string s = BKBookmarksManager::getLastFile();
+		if(argc == 2)
+			string s(argv[1]);
+		else if( BKUser::options.loadLastFile )
+			string s = BKBookmarksManager::getLastFile();
+		else
+			string s = "";
 		if( s.substr(0,5) == "ms0:/" )
 		{
 				// clear layers
