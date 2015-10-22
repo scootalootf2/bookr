@@ -1,4 +1,4 @@
-this fork aims to add passed in ebook path support
+this fork aims to add passed in ebook path support(irshell plugin mode)
 
 --original readme.md--
 # bookr
