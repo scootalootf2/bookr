@@ -15,7 +15,7 @@ OBJS+=pspchm.o
 
 DIST_DIR=dist
 #make it so it is C:/freetype/include/freetype/*.h -scooty
-PSP_FREETYPE=C:/freetype 
+PSP_FREETYPE=C:/freetype
 
 INCDIR =$(PSP_FREETYPE)/include     utf8
 CFLAGS = -Imupdf/include -Idjvu/libdjvupsp -G0 -O2
