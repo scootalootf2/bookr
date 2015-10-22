@@ -35,7 +35,7 @@
 #include <pspkernel.h>
 PSP_MODULE_INFO("Bookr", 0, 1, 1);
 PSP_HEAP_SIZE_KB(-7*1024);
-PSP_MAIN_THREAD_ATTR(PSP_THREAD_ATTR_USER);
+PSP_MAIN_THREAD_ATTR(THREAD_ATTR_USER | THREAD_ATTR_VFPU);
 #endif
 
 extern int processCHMHTM(bkLayers& layers, string filepath, bool convertToVN);
@@ -83,15 +83,17 @@ int main(int argc, char* argv[]) {
 	layers.push_back(mm);
 
 	FZScreen::dcacheWritebackAll();
-	// if an explicit path was specified, use that path (irshell plugin style, where argv[1] is a full path) -scoots
-	if( BKUser::options.loadLastFile || argc == 2)
+
+
+	if( BKUser::options.loadLastFile || argc == 2 )
 	{
-		if(argc == 2)
-			string s(argv[1]);
-		else if( BKUser::options.loadLastFile )
-			string s = BKBookmarksManager::getLastFile();
-		else
-			string s = "";
+		string s;
+		if(argc == 2){
+			string a(argv[1]);
+			s = a;
+		}else{
+			s = BKBookmarksManager::getLastFile();
+		}
 		if( s.substr(0,5) == "ms0:/" )
 		{
 				// clear layers
@@ -414,4 +416,3 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
-
