@@ -148,6 +148,9 @@ int main(int argc, char* argv[]) {
 	bool exitApp = false;
 	int reloadTimer = 0;
 	while (!exitApp) {
+		sceImposeSetHomePopup(0);
+		sceImposeSetUMDPopup(0);
+		sceImposeSetLanguageMode(0, 0);
 //		if(vdirty) {
 //			FZScreen::startDirectList();
 //			// render layers back to front
