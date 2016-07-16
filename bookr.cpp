@@ -101,8 +101,10 @@ int main(int argc, char* argv[]) {
 	{
 		string s;
 		if(argc == 2){
-			string a(argv[1]);
-			s = a;
+			// what was I doing...
+			// string a(argv[1]);
+			// s = a;
+			s.assign(argv[1]);
 		}else{
 			s = BKBookmarksManager::getLastFile();
 		}
